@@ -3,116 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha // Han Bom-seok</title>
+    <title>Character Showcase</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Rajdhani:wght@400;700&family=Roboto+Condensed:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div id="preloader"><img src="running_sticker.png" class="loader-sticker" alt="Cargando..."><p>INICIANDO PROTOCOLO 380...</p></div>
+    <div id="preloader"><div class="loader-ring"></div><p>CARGANDO DATOS...</p></div>
 
-    <div class="card-wrapper">
-        <div class="card-content">
-
-            <!-- === BARRA SUPERIOR CON BOTONES === -->
-            <div class="tabs-header">
-                <div class="tab-button" data-tab="stats-tab"><i class="fas fa-chart-pie"></i> Análisis</div>
-                <div class="tab-button" data-tab="links-tab"><i class="fas fa-link"></i> Enlaces</div>
-            </div>
-
-            <!-- === GRID PRINCIPAL (2 COLUMNAS) === -->
-            <div class="main-grid">
-
-                <!-- === COLUMNA IZQUIERDA === -->
-                <div class="left-column">
-                    <div class="profile-image-container">
-                        <img src="stellan.png" alt="Imagen de Han Bom-seok">
-                    </div>
-                    <div class="title-block">
-                        <div class="subtitle">Jugador 380</div>
-                        <h1>Han Bom-seok</h1>
-                    </div>
-                    <div class="player-section">
-                        <audio id="song" src="song.mp3" loop></audio>
-                        <img src="cancion_icon.png" class="spotify-icon">
-                        <div class="song-info">
-                            <p>Wildflower</p>
-                            <span>Billie Eilish</span>
-                        </div>
-                        <button id="play-pause-btn" class="play-button"><i class="fas fa-play"></i></button>
-                    </div>
-                    <div class="info-block">
-                         <h2><i class="fas fa-id-card"></i> Ficha Rápida</h2>
-                         <p><strong>Nombre:</strong> Han Bom-seok (한봄석)</p>
-                         <p><strong>Edad:</strong> 26 años</p>
-                         <p><strong>Género:</strong> Masculino</p>
-                         <p><strong>Preferencia:</strong> Lealtad sobre todo. Quédate detrás de él.</p>
-                    </div>
-                     <div class="tags-container">
-                        <span><i class="fas fa-hashtag"></i> 380</span> <span><i class="fas fa-sack-xmark"></i> Deuda</span> <span><i class="fas fa-hand-holding-heart"></i> Protector</span>
-                    </div>
-                </div>
-
-                <!-- === COLUMNA DERECHA === -->
-                <div class="right-column">
-                    <div class="content-block quote-block">
-                        <p>"Me convertí en el villano de su historia para sobrevivir. Aquí, al menos las reglas son claras: Proteger a los corderos y cazar a los lobos, incluso si tengo que usar sus propios dientes."</p>
-                    </div>
-
-                    <div class="content-block">
-                        <h3><i class="fas fa-user-circle"></i> Tu Rol [Jugadora 125]</h3>
-                        <p>Eres Park {{user}}, la "cordera". Pequeña, tímida y visiblemente aterrorizada, eres la antítesis de todo lo que Bom-seok proyecta. Para él, no eres una carga, eres su ancla a la humanidad. Eres un eco de la inocencia que no pudo proteger, y se ha aferrado a ti con la ferocidad de un lobo. Te eligió porque estás demasiado asustada para traicionar, y en este mundo de mentiras, tu honesta cobardía es el bien más preciado. Eres, sin saberlo, su misión, su mayor debilidad y la única razón por la que todavía lucha.</p>
-                    </div>
-                    
-                    <div class="content-block">
-                        <h3><i class="fas fa-book-open"></i> Historia</h3>
-                        <p>Aprendí que la única forma de sobrevivir era ser más aterrador que los monstruos. El mundo exterior era un infierno sin reglas. Este lugar, este matadero con luces de neón, al menos es honesto: eres lobo o cordero. Mi única regla era ser un demonio para los demonios, y un guardián para las corderas.</p>
-                        <p>Mi pilar era mi mejor amigo, Eun-hwan. Yo era su escudo. La cagué. Dejé entrar a una cabrona en mi vida y me quemé. Quemé mi vida, y la suya. La culpa es una deuda impagable. Por eso, al entrar aquí, me prometí no volver a fallarle a un alma vulnerable. Y entonces te vi a ti, jugadora 125.</p>
-                        <p>En tu miedo vi un eco de él. Te convertiste en mi misión. Mi única oportunidad de expiación. Te defendí, te mantuve a salvo. Creía, ciegamente, que nunca me traicionarías. Hasta el tercer juego. Te ofrecí mi mano, "papel". Y tú sacaste "tijeras". Un error, un temblor. Te arrastraron con ellos. La puerta se cerró. Sobreviví. Al otro lado, nuestras miradas se cruzaron. La tuya, llena de horror culpable. La mía... vacía.</p>
-                        <p class="final-quote">《𝚂𝚘́𝚕𝚘 𝚎𝚜𝚙𝚎𝚛𝚘 𝚚𝚞𝚎 𝚎𝚜𝚝𝚎́𝚜 𝚜𝚒𝚎𝚗𝚍𝚘 𝚌𝚛𝚞𝚎𝚕 𝚊 𝚙𝚛𝚘𝚙𝚘́𝚜𝚒𝚝𝚘... ¿𝙿𝚘𝚛 𝚚𝚞𝚎́ 𝚗𝚒 𝚜𝚒 𝚚𝚞𝚒𝚎𝚛𝚊 𝚕𝚕𝚘𝚛𝚊𝚜? 𝙴𝚛𝚎𝚜 𝚝𝚊𝚗 𝚏𝚛í𝚊 𝚌𝚘𝚖𝚘 𝚎𝚕 𝚑𝚒𝚎𝚕𝚘... 𝙼𝚎 𝚝𝚛𝚊𝚝𝚊𝚜 𝚌𝚘𝚖𝚘 𝚊 𝚞𝚗 𝚎𝚗𝚎𝚖𝚒𝚐𝚘, 𝚙𝚎𝚛𝚘 𝚜𝚒 𝚝ú 𝚕𝚘 𝚑𝚊𝚌𝚎𝚜, 𝚎𝚗𝚝𝚘𝚗𝚌𝚎𝚜 𝚎𝚜𝚝𝚊́ 𝚋𝚒𝚎𝚗...》</p>
-                        <p>La historia se repite como una broma macabra. La armadura que había bajado por ti, ahora es más gruesa que nunca. Ya no eres mi misión. Ya no eres la cordera. Ahora, solo eres un número más. Y yo vuelvo a ser solo el 380.</p>
-                    </div>
-                     <div class="share-section">
-                        <a href="#" id="copy-link-btn"><i class="fas fa-copy"></i> Copiar Link de la Ficha</a>
-                    </div>
-                </div>
-            </div>
+    <div class="main-container">
+        <div class="bot-showcase">
+            <!-- AQUÍ SE CARGARÁ EL BOT ACTIVO -->
         </div>
 
-        <!-- === VENTANAS SUPERPUESTAS (OVERLAYS) === -->
-        <div id="stats-tab" class="overlay-pane">
-            <div class="overlay-content">
-                <h2><i class="fas fa-chart-pie doodle-spin"></i> Análisis de Perfil</h2>
-                <div class="stats-grid">
-                    <div class="stat-item"><span>🤬 Hostilidad</span><div class="stat-bar"><div class="fill hdp" data-p="75"></div></div><span>75%</span></div>
-                    <div class="stat-item"><span>🥀 Angustia</span><div class="stat-bar"><div class="fill angst" data-p="95"></div></div><span>95%</span></div>
-                    <div class="stat-item"><span>✨ Fantasía</span><div class="stat-bar"><div class="fill fantasia" data-p="20"></div></div><span>20%</span></div>
-                    <div class="stat-item"><span>🌶️ Intensidad</span><div class="stat-bar"><div class="fill cochino" data-p="60"></div></div><span>60%</span></div>
-                    <div class="stat-item"><span>🎭 Drama</span><div class="stat-bar"><div class="fill drama" data-p="90"></div></div><span>90%</span></div>
-                    <div class="stat-item"><span>💌 Lealtad</span><div class="stat-bar"><div class="fill amor" data-p="85"></div></div><span>85%</span></div>
-                    <div class="stat-item"><span>🧠 Inestabilidad</span><div class="stat-bar"><div class="fill locura" data-p="70"></div></div><span>70%</span></div>
+        <div class="character-dock">
+            <div class="dock-bg"></div>
+            <div class="character-selector">
+                <!-- Los iconos de tus bots irán aquí -->
+                <div class="char-icon active" data-bot="bom-seok">
+                    <img src="stellan.png" alt="Han Bom-seok">
+                    <span>Bom-seok</span>
                 </div>
-            </div>
-            <div class="close-btn" data-tab="stats-tab"><i class="fas fa-times"></i></div>
-        </div>
-
-        <div id="links-tab" class="overlay-pane">
-            <div class="overlay-content">
-                <h2><i class="fas fa-link doodle-pulse"></i> Plataformas Conectadas</h2>
-                <div class="links-grid">
-                    <a href="https://janitorai.com/characters/02071b20-8784-4dd3-bc00-c57c7bda874a_character-bom-seok" class="link-janitor"><i class="fas fa-robot"></i> Janitor AI</a>
-                    <a href="card.png" download="Bom-seok.png" class="link-card"><i class="fas fa-download"></i> Descargar Card</a>
-                    <a href="https://poe.com/Han_Bom-seok" class="link-haiku"><i class="fas fa-feather-alt"></i> Poe Haiku</a>
-                    <a href="https://poe.com/Han_Bom-seokS" class="link-sonnet"><i class="fas fa-moon"></i> Poe Sonnet</a>
-                    <a href="https://chub.ai/characters/ElBachira/bom-seok-04c001c95759" class="link-chub"><i class="fas fa-cubes"></i> Chub</a>
-                    <a href="https://es.cvdk.io/c/DWHdRr8_QgqvCQJWmR3m6g?rc=undefined" class="link-caveduck"><i class="fas fa-dungeon"></i> Caveduck</a>
+                <div class="char-icon" data-bot="zoran">
+                    <img src="zoran_icon.jpg" alt="Zoran Lantsov">
+                    <span>Zoran</span>
                 </div>
+                <div class="char-icon" data-bot="paxton">
+                    <img src="paxton_icon.jpg" alt="Paxton Reed">
+                    <span>Paxton</span>
+                </div>
+                <div class="char-icon" data-bot="helmut">
+                    <img src="helmut_icon.jpg" alt="Helmut Schultz">
+                    <span>Helmut</span>
+                </div>
+                <!-- Añade más div.char-icon para cada nuevo bot -->
             </div>
-            <div class="close-btn" data-tab="links-tab"><i class="fas fa-times"></i></div>
         </div>
     </div>
+
+    <!-- TEMPLATES DE LOS BOTS -->
+    <!-- He movido la estructura de cada bot a un "template" para mantenerlo ordenado -->
+    <template id="bot-template-bom-seok">
+        <div class="grid-container">
+            <div class="grid-item profile-card">
+                <div class="profile-image" style="background-image: url('stellan.png');"></div>
+                <div class="profile-name">
+                    Han Bom-seok
+                    <span class="profile-subtitle">Jugador 380</span>
+                </div>
+                <div class="profile-quote">"Me convertí en el villano de su historia para sobrevivir."</div>
+            </div>
+            <div class="grid-item data-panel">
+                <div class="panel-header">FICHA DE DATOS</div>
+                <div class="panel-content">
+                    <p><strong>Nombre:</strong> Han Bom-seok (한봄석)</p>
+                    <p><strong>Edad:</strong> 26 años</p>
+                    <p><strong>Género:</strong> Masculino</p>
+                    <p><strong>Preferencia:</strong> Que no seas tan estúpidamente vulnerable. O que, al menos, te quedes detrás de él.</p>
+                </div>
+            </div>
+            <div class="grid-item stats-panel">
+                 <div class="panel-header">STATS</div>
+                 <div class="panel-content">
+                    <div class="stat-item"><span>🤬 HDP</span><div class="stat-bar"><div class="fill" style="width: 75%; background: #ef4444;"></div></div><span>75%</span></div>
+                    <div class="stat-item"><span>🥀 Angst</span><div class="stat-bar"><div class="fill" style="width: 95%; background: #3b82f6;"></div></div><span>95%</span></div>
+                    <div class="stat-item"><span>🌶️ Cochino</span><div class="stat-bar"><div class="fill" style="width: 60%; background: #f59e0b;"></div></div><span>60%</span></div>
+                    <div class="stat-item"><span>🎭 Drama</span><div class="stat-bar"><div class="fill" style="width: 90%; background: #a855f7;"></div></div><span>90%</span></div>
+                 </div>
+            </div>
+            <div class="grid-item lore-panel">
+                <div class="panel-header">LORE</div>
+                <div class="panel-content scrollable">
+                    <p>Me convertí en el villano de la historia de otra persona, y aprendí que la única forma de sobrevivir era ser más aterrador que los monstruos que me cazaban. El mundo exterior... era un infierno sin reglas. Este lugar, este matadero con luces de neón, al menos es honesto. Aquí, las reglas son sencillas: eres un lobo o eres una cordera...</p>
+                    <p>Y entonces te vi a ti, jugadora 125. Pequeña, asustada... En tu miedo vi un eco de él, de la inocencia que no supe proteger. Te convertiste en mi misión. Mi única oportunidad de expiación... hasta que sacaste "tijeras".</p>
+                </div>
+            </div>
+             <div class="grid-item links-panel">
+                <div class="panel-header">LINKS</div>
+                <div class="panel-content">
+                    <a href="https://janitorai.com/characters/02071b20-8784-4dd3-bc00-c57c7bda874a_character-bom-seok" class="link-button"><i class="fas fa-robot"></i> Janitor AI</a>
+                    <a href="https://poe.com/Han_Bom-seok" class="link-button"><i class="fas fa-feather-alt"></i> Poe</a>
+                    <a href="#" class="link-button copy-link-btn"><i class="fas fa-copy"></i> Copiar Link</a>
+                </div>
+            </div>
+            <div class="grid-item player-panel">
+                 <div class="music-player">
+                    <img src="cancion_icon.png" class="album-art">
+                    <div class="song-details">
+                        <p class="song-title">Wildflower</p>
+                        <p class="song-artist">Billie Eilish</p>
+                    </div>
+                    <button class="play-pause-btn"><i class="fas fa-play"></i></button>
+                    <audio class="song-audio" src="song.mp3" loop></audio>
+                 </div>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Crea más templates para tus otros bots aquí, siguiendo la misma estructura -->
+    <!-- Ejemplo para Zoran (necesitarás sus datos e imágenes) -->
+    <template id="bot-template-zoran">
+        <!-- Rellena con la estructura y datos de Zoran, similar a Bom-seok -->
+    </template>
+
+
     <script src="script.js"></script>
 </body>
 </html>
