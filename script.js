@@ -1,131 +1,109 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- PARCHE PARA AUTOPLAY EN MÓVILES Y NAVEGADORES ESTRICTOS ---
-    const audio = document.getElementById('song');
-    // Esta función 'desbloquea' el audio la primera vez que el usuario toca la pantalla.
-    function unlockAudio() {
-        if (audio.paused) {
-            audio.play().catch(() => {}); // Intenta reproducir
-            audio.pause(); // Y pausa inmediatamente
-        }
-        // Se elimina a sí misma para no ejecutarse más de una vez.
-        document.body.removeEventListener('click', unlockAudio);
-        document.body.removeEventListener('touchstart', unlockAudio);
-    }
-    document.body.addEventListener('click', unlockAudio);
-    document.body.addEventListener('touchstart', unlockAudio);
-    // --- FIN DEL PARCHE ---
-
-    // --- PRE-LOADER ---
     const preloader = document.getElementById('preloader');
-    window.addEventListener('load', () => {
-        preloader.classList.add('loaded');
-    });
+    const botShowcase = document.querySelector('.bot-showcase');
+    const characterIcons = document.querySelectorAll('.char-icon');
 
-    // --- EFECTOS DE SONIDO ---
-    const clickSound = new Audio('https://www.fesliyanstudios.com/play-mp3/387');
-    const swooshSound = new Audio('https://www.fesliyanstudios.com/play-mp3/570');
-    
-    document.querySelectorAll('.tab-button, .close-btn, .play-button, .links-grid a').forEach(element => {
-        element.addEventListener('click', () => {
-            if (element.matches('.links-grid a')) {
-                swooshSound.currentTime = 0;
-                swooshSound.play().catch(e => console.log("Error al reproducir swoosh:", e));
-            } else {
-                clickSound.currentTime = 0;
-                clickSound.play().catch(e => console.log("Error al reproducir click:", e));
-            }
-        });
-    });
+    // --- FUNCIÓN PRINCIPAL PARA CARGAR BOTS ---
+    function loadBot(botId) {
+        // Ocultar el contenido actual con una animación
+        botShowcase.style.opacity = 0;
 
-    // --- ANIMACIÓN DE TEXTO "MÁQUINA DE ESCRIBIR" ---
-    // (Tu código de máquina de escribir va aquí, sin cambios)
-    document.querySelectorAll('.typewriter').forEach((element, index) => {
-        const text = element.innerHTML;
-        element.innerHTML = '';
-        element.style.opacity = 1;
-        let i = 0;
+        // Buscar el template del bot
+        const template = document.getElementById(`bot-template-${botId}`);
+        if (!template) {
+            console.error(`No se encontró el template para el bot: ${botId}`);
+            botShowcase.innerHTML = `<p>Error: Bot no encontrado.</p>`;
+            botShowcase.style.opacity = 1;
+            return;
+        }
+
+        // Clonar el contenido y añadirlo al showcase
+        const newContent = template.content.cloneNode(true);
+
         setTimeout(() => {
-            const typing = setInterval(() => {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
+            botShowcase.innerHTML = '';
+            botShowcase.appendChild(newContent);
+            
+            // Re-inicializar los listeners de eventos para el nuevo contenido
+            initializeBotEventListeners();
+
+            // Mostrar el nuevo contenido con una animación
+            botShowcase.style.opacity = 1;
+
+        }, 300); // Esperar a que la animación de fade-out termine
+
+        // Actualizar el icono activo
+        characterIcons.forEach(icon => {
+            icon.classList.toggle('active', icon.dataset.bot === botId);
+        });
+    }
+
+    // --- EVENT LISTENERS PARA LA SELECCIÓN DE PERSONAJES ---
+    characterIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            const botId = icon.dataset.bot;
+            loadBot(botId);
+        });
+    });
+
+    // --- FUNCIÓN PARA INICIALIZAR LISTENERS DENTRO DEL BOT CARGADO ---
+    function initializeBotEventListeners() {
+        // --- REPRODUCTOR DE MÚSICA ---
+        const player = botShowcase.querySelector('.music-player');
+        if (player) {
+            const audio = player.querySelector('.song-audio');
+            const playPauseBtn = player.querySelector('.play-pause-btn');
+            const albumArt = player.querySelector('.album-art');
+            const playIcon = '<i class="fas fa-play"></i>';
+            const pauseIcon = '<i class="fas fa-pause"></i>';
+
+            playPauseBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.innerHTML = pauseIcon;
+                    albumArt.style.animation = 'spin 4s linear infinite';
                 } else {
-                    clearInterval(typing);
+                    audio.pause();
+                    playPauseBtn.innerHTML = playIcon;
+                    albumArt.style.animation = 'none';
                 }
-            }, 25);
-        }, 500 + index * 100); 
-    });
-
-    // --- EFECTO PARALLAX (CON MEJORA PARA MÓVILES) ---
-    // (Tu código de parallax va aquí, sin cambios)
-    document.addEventListener('mousemove', (e) => {
-        const { clientX, clientY } = e;
-        const { innerWidth, innerHeight } = window;
-        const xOffset = (clientX / innerWidth - 0.5) * -2;
-        const yOffset = (clientY / innerHeight - 0.5) * -2;
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            document.body.style.backgroundPosition = `calc(50% + ${xOffset}%) calc(50% + ${yOffset}%)`;
+            });
+            audio.addEventListener('ended', () => {
+                playPauseBtn.innerHTML = playIcon;
+                albumArt.style.animation = 'none';
+            });
         }
-    });
-
-    // --- LÓGICA DE PESTAÑAS ---
-    // (Tu código de pestañas va aquí, sin cambios)
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const closeButtons = document.querySelectorAll('.close-btn');
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const paneId = button.dataset.tab;
-            document.getElementById(paneId).classList.add('active');
-            if (paneId === 'stats-tab') { animateStats(); }
-        });
-    });
-    closeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            button.closest('.overlay-pane').classList.remove('active');
-        });
-    });
-    function animateStats(){document.querySelectorAll('.overlay-pane.active .fill').forEach(bar=>{bar.style.width='0%';const percentage=bar.getAttribute('data-p');setTimeout(()=>{bar.style.width=percentage+'%'},100)})}
-    
-    // --- LÓGICA DEL REPRODUCTOR DE MÚSICA (CORREGIDO) ---
-    const playPauseBtn = document.getElementById('play-pause-btn');
-    const spotifyIcon = document.querySelector('.spotify-icon');
-    const playIcon = '<i class="fas fa-play"></i>';
-    const pauseIcon = '<i class="fas fa-pause"></i>';
-
-    playPauseBtn.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play();
-            playPauseBtn.innerHTML = pauseIcon;
-            spotifyIcon.classList.add('is-spinning');
-        } else {
-            audio.pause();
-            playPauseBtn.innerHTML = playIcon;
-            spotifyIcon.classList.remove('is-spinning');
+        
+        // --- BOTÓN DE COPIAR LINK ---
+        const copyBtn = botShowcase.querySelector('.copy-link-btn');
+        if (copyBtn) {
+            const originalBtnText = copyBtn.innerHTML;
+            copyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copiado';
+                    copyBtn.style.background = 'var(--color-secondary)';
+                    copyBtn.style.color = 'var(--color-bg)';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalBtnText;
+                        copyBtn.style.background = '';
+                        copyBtn.style.color = '';
+                    }, 2000);
+                });
+            });
         }
+    }
+
+
+    // --- CARGA INICIAL ---
+    window.addEventListener('load', () => {
+        // Ocultar preloader
+        preloader.classList.add('loaded');
+        
+        // Cargar el primer bot por defecto
+        const defaultBot = document.querySelector('.char-icon.active')?.dataset.bot || 'bom-seok';
+        loadBot(defaultBot);
     });
 
-    audio.addEventListener('ended', () => {
-        playPauseBtn.innerHTML = playIcon;
-        spotifyIcon.classList.remove('is-spinning');
-    });
-
-    // --- EASTER EGG Y BOTÓN DE COPIAR ---
-    // (El resto de tu código, sin cambios)
-    const fnafSticker=document.getElementById('fnaf-sticker');const honkSound=new Audio('https://www.myinstants.com/media/sounds/fnaf-nose-honk.mp3');fnafSticker.addEventListener('click',()=>{honkSound.currentTime=0;honkSound.play().catch(e => {})});
-    const copyBtn = document.getElementById('copy-link-btn');
-    const originalBtnText = copyBtn.innerHTML;
-    copyBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        navigator.clipboard.writeText(window.location.href).then(() => {
-            copyBtn.innerHTML = '<i class="fas fa-check"></i> ¡Copiado!';
-            copyBtn.classList.add('copied');
-            swooshSound.currentTime = 0;
-            swooshSound.play().catch(err => {});
-            setTimeout(() => {
-                copyBtn.innerHTML = originalBtnText;
-                copyBtn.classList.remove('copied');
-            }, 2000);
-        });
-    });
 });
